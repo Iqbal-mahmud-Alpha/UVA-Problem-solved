@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 3007
+void solve(int a,int b)
+{
+    cout<<a<<"/"<<b<<" = "<<(int)(a/b)<<".";
+    int rem[3007];
+    memset(rem,0,sizeof(rem));
+    a%=b;
+    rem[a]=1;
+    string s;
+    int cnt=1;
+    while(true)
+    {
+        a*=10;
+        s.pb((a/b)+'0');
+        a%=b;
+        if(rem[a])
+        {
+            break;
+        }
+        rem[a]=++cnt;
+    }
+//    cout<<s<<endl;
+    int start=rem[a]-1;
+    int end=cnt;
+    for(int i=0; i<end &&i<50; i++)
+    {
+        if(i==start)
+        {
+            cout<<"(";
+        }
+        cout<<s[i];
+    }
+    if(end-start>=50)
+    {
+        cout<<"...";
+    }
+    cout<<")"<<endl;
+//    cout<<start<<" "<<cnt<<endl;
+    cout<<"   "<<end-start<<" = "<<"number of digits in repeating cycle"<<endl;
+}
+int main()
+{
+    int a,b;
+    while(cin>>a>>b)
+    {
+        solve(a,b);
+        cout<<endl;
+    }
+}
+
+
+
+
