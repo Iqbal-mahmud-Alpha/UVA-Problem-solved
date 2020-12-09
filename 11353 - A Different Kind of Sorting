@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 2000000
+map<int,int>m;
+void primefactor(int n)
+{
+    int number=n;
+    int cnt=0;
+    for(int i=2; i*i<=n; i++)
+    {
+        if(n%i==0)
+        {
+            while(n%i==0)
+            {
+                n/=i;
+                cnt++;
+            }
+        }
+    }
+    if(n>1)m[number]=cnt+1;
+    else m[number]=cnt;
+}
+bool com(pr a,pr b)
+{
+    if(a.ss==b.ss)
+    {
+        if(a.ff<b.ff) return 1;
+        else return 0;
+    }
+    if(a.ss<b.ss)return 1;
+    else return 0;
+}
+
+int main()
+{
+    int tc;
+    for(int i=1; i<=2000000; i++)
+    {
+        primefactor(i);
+    }
+    vector<pr>v;
+    for(auto& a:m)
+    {
+        v.pb(a);
+    }
+    sort(v.begin(),v.end(),com);
+    int cnt=0;
+    while(cin>>tc){
+            if(tc==0)break;
+            cout<<"Case "<<++cnt<<": ";
+        cout<<v[tc-1].ff<<endl;
+    }
+}
