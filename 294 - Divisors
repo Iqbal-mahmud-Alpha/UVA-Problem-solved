@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000007
+int devesor_sum(lli n)///find divisor  sum using prime factorization
+{
+    int cnt=0;
+    for(int i=1; i*i<=n; i++)
+    {
+        if(n%i==0)
+        {
+            if(i*i==n)cnt++;
+            else
+                cnt+=2;
+        }
+    }
+    return cnt;
+}
+int main()
+{
+    int tc,l,u;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>l>>u;
+
+        map<lli,lli>m;
+        for(lli i=l; i<=u; i++)
+        {
+
+            m[i]=devesor_sum(i);
+
+        }
+        int a,b,mx=0;
+        for(auto p:m)
+        {
+            if(p.ss>mx)
+            {
+                a=p.ff;
+                b=p.ss;
+                mx=p.ss;
+            }
+        }
+        cout<<"Between "<<l<<" and "<<u<<", "<<a<<" has a maximum of "<<b<<" divisors."<<endl;
+    }
+
+}
+
+
