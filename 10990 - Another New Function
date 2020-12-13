@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 10000007
+int f[num];
+int pre[num];
+int ans[num]={0};
+void phi()
+{
+    for(int i=1; i<=num; i++)
+    {
+        f[i]=i;
+    }
+    for(int i=2; i<=num; i++)
+    {
+        if(f[i]==i)
+        {
+            for(int j=i; j<=num; j+=i)
+            {
+                f[j]/=i;
+                f[j]*=(i-1);
+            }
+        }
+    }
+    for(int i=2; i<=num; i++)
+    {
+        int n=i;
+        int cnt=0;
+        while(n!=1)
+        {
+            n=f[n];
+            cnt++;
+        }
+        pre[i]=cnt;
+    }
+    for(int i=2; i<=num; i++)
+    {
+     ans[i]=ans[i-1]+pre[i];
+    }
+}
+int main()
+{
+    phi();
+    int tc,m,n;
+    cin>>tc;
+    while(tc--)
+    {
+        int cnt=0;
+        cin>>m>>n;
+        cout<<ans[n]-ans[m-1]<<endl;
+    }
+}
+
+
+
