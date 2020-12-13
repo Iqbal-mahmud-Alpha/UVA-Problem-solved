@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 10000007
+vector<lli> div(lli n)
+{
+    vector<lli>v;
+    lli s=sqrt(n);
+    for(int i=1; i<=s; i++)
+    {
+        if(n%i==0)
+        {
+            v.pb(i),v.pb(n/i);
+        }
+    }
+    reverse(v.begin(),v.end());
+    return v;
+}
+int main()
+{
+    lli tc,m,n;
+    cin>>tc;
+    while(tc--)
+    {
+        vector<lli>ans;
+        cin>>m>>n;
+        ans=div(m);
+        bool b=true;
+        for(int i=0; i<ans.size(); i++)
+        {
+            if(n%ans[i]==0)
+            {
+                int a=n/ans[i];
+                if(gcd(ans[i],ans[i]*n)==m)
+                {
+                    cout<<ans[i]<<' '<<ans[i]*a<<endl;
+                    b=false;
+                    break;
+                }
+            }
+        }
+        if(b)cout<<-1<<endl;
+    }
+}
+
+
+
