@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define llu long long unsigned int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 10007
+#define all(a)  (a.begin(),a.end())
+vector<int>prime;
+bool a[num];
+void sive()
+{
+    memset(a,true,sizeof(a));
+    a[0]=a[1]=false;
+    for(int i=4; i<num; i+=2)a[i]=false;
+    for(int i=3; i<sqrt(num); i+=2)
+    {
+        if(a[i])
+        {
+            for(int j=i*i; j<num; j+=i*2)
+            {
+                a[j]=false;
+            }
+        }
+    }
+    for(int i=0; i<num; i++)
+    {
+        if(a[i])prime.push_back(i);
+    }
+}
+int main()
+{
+    sive();
+    int tc;
+    while(cin>>tc)
+    {
+        if(tc==0)break;
+        int cnt=0;
+        auto it=lower_bound(prime.begin(),prime.end(),tc);
+        int index=it-prime.begin();
+//        cout<<index<<endl;
+        for(int i=0; i<=index; i++)
+        {
+            int sum=0;
+            for(int j=i; j<=index; j++)
+            {
+               sum+=prime[j];
+                if(sum==tc)cnt++;
+                if(sum>tc)break;
+            }
+        }
+        cout<<cnt<<endl;
+    }
+}
+
+
+
