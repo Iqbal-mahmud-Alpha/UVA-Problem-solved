@@ -1,0 +1,83 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 100000
+vector<int>prime;
+bool a[num];
+void sive()
+{
+    memset(a,true,sizeof(a));
+    a[0]=a[1]=false;
+    for(int i=4; i<num; i+=2)a[i]=false;
+    for(int i=3; i<sqrt(num); i+=2)
+    {
+        if(a[i])
+        {
+            for(int j=i*i; j<num; j+=i*2)
+            {
+                a[j]=false;
+            }
+        }
+    }
+    for(int i=0; i<num; i++)
+    {
+        if(a[i])prime.push_back(i);
+    }
+}
+int check_power(int n, int p)/// the exponent of prime p is n!
+{
+    int res = 0;
+    while(n)
+    {
+        n/=p;
+        res+=n;
+    }
+    return res;
+}
+bool is_check(lli n,lli m)
+{
+    for(int i=0; i<prime.size()&&prime[i]*prime[i]<=m; i++)
+    {
+        if(m%prime[i]==0)
+        {
+            int cnt=0;
+            while(m%prime[i]==0)
+            {
+                m/=prime[i];
+                cnt++;
+            }
+            if(check_power(n,prime[i])<cnt)return false;
+        }
+    }
+    if(m>1 && m>n)return false;
+    return true;
+}
+int main()
+{
+    faster
+    sive();
+    lli n,m;
+    while(cin>>n>>m)
+    {
+        if(is_check(n,m))
+        {
+            cout<<m<<" divides "<<n<<"!"<<endl;
+        }
+        else
+        {
+            cout<<m<<" does not divide "<<n<<"!"<<endl;
+        }
+    }
+    return 0;
+}
+
+
+
