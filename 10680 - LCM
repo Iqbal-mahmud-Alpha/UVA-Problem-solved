@@ -1,0 +1,82 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+///http://pavelsimo.blogspot.com/2012/06/uva-10680-lcm.html
+vector<int>prime;
+bool a[num];
+void sive()
+{
+    memset(a,true,sizeof(a));
+    a[0]=a[1]=false;
+    for(int i=4; i<num; i+=2)a[i]=false;
+    for(int i=3; i<sqrt(num); i+=2)
+    {
+        if(a[i])
+        {
+            for(int j=i*i; j<num; j+=i*2)
+            {
+                a[j]=false;
+            }
+        }
+    }
+    for(int i=0; i<num; i++)
+    {
+        if(a[i])prime.push_back(i);
+    }
+}
+int main()
+{
+
+    sive();
+    int n;
+    while(cin>>n)
+    {
+        if(n==0)break;
+        int cnt2=0,cnt5=0,res=1;
+        for(int i=0; i<prime.size()&&prime[i]<=n; i++)
+        {
+            lli temp=1;
+            if(prime[i]==2)
+            {
+                while(temp*prime[i]<=n)
+                {
+                    cnt2++;
+                    temp*=prime[i];
+                }
+            }
+            else if(prime[i]==5)
+            {
+                while(temp*prime[i]<=n)
+                {
+                    cnt5++;
+                    temp*=prime[i];
+                }
+            }
+            else
+            {
+                while(temp*prime[i]<=n)
+                {
+                    temp*=prime[i];
+                    res*=prime[i];
+                    res%=10;
+                }
+            }
+        }
+        for(int i=1; i<=cnt2-cnt5; i++)
+        {
+            res*=2;
+            res%=10;
+        }
+        cout<<res<<endl;
+    }
+
+}
