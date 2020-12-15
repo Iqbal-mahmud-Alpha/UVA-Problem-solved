@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+typedef unsigned long long llu;
+int main()
+{
+    llu n,y;
+    while(cin>>n)
+    {
+        if(n==0)break;
+        y=(n*10)/9;
+        if(n%9==0)
+        {
+            cout<<y-1<<" "<<y<<endl;
+        }
+        else
+        {
+            cout<<y<<endl;
+        }
+    }
+}
