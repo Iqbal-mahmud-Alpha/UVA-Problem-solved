@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+//#define gcd(a,b)    __gcd(a,b)
+//#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+typedef unsigned long long llu;
+int gcd(int a, int b, int& x, int& y) {
+    if (b == 0) {
+        x = 1;
+        y = 0;
+        return a;
+    }
+    int x1, y1;
+    int d = gcd(b, a % b, x1, y1);
+    x = y1;
+    y = x1 - y1 * (a / b);
+    return d;
+}
+
+bool find_any_solution(int a, int b, int c, int &x0, int &y0, int &g) {
+    g = gcd(abs(a), abs(b), x0, y0);
+    if (c % g) {
+        return false;
+    }
+
+    x0 *= c / g;
+    y0 *= c / g;
+    if (a < 0) x0 = -x0;
+    if (b < 0) y0 = -y0;
+    return true;
+}
+int main()
+{
+    int tc,x,p,q,k,g,a,b;
+    cin>>tc;
+    while(tc--)
+    {
+    cin>>x>>k;
+    int a=floor((double)x/k);
+    int b=ceil((double)x/k);
+    find_any_solution(a,b,x,p,q,g);
+    cout<<p<<' '<<q<<endl;
+    }
+}
