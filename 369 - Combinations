@@ -1,0 +1,46 @@
+//package main;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNext()) {
+            long n, m, resm = 1, resn = 1, ans = 0;
+            n = in.nextInt();
+            m = in.nextInt();
+            if (n == 0 && m == 0) {
+                break;
+            }
+            long r1 = n - m;
+            int len = (int) (n - r1);
+            long N[] = new long[len];
+            for (int i = 0; i < N.length; i++) {
+                N[i] = r1 + i + 1;
+            }
+            int M[] = new int[(int) m];
+            for (int i = 0; i < m; i++) {
+                M[i] = i + 1;
+            }
+//       
+            for (int i = 0; i < M.length; i++) {
+                for (int j = 0; j < N.length; j++) {
+                    if (N[j] % M[i] == 0) {
+                        N[j] /= M[i];
+                        M[i] = 1;
+                        break;
+                    }
+                }
+            }
+            for (int i = 0; i < M.length; i++) {
+                resm *= M[i];
+            }
+            for (int i = 0; i < N.length; i++) {
+                resn *= N[i];
+            }
+            ans = resn / resm;
+            System.out.println(n + " things taken " + m + " at a time is " + ans + " exactly.");
+        }
+    }
+}
