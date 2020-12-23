@@ -1,0 +1,122 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define all(a)         a.begin(),a.end()
+#define Sort(x)        sort(x.begin(),x.end())
+#define Reverse(x,n)     reverse(x,x+n)
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+bool vowels(char ch)
+{
+    if (ch == 'a' or ch == 'e' or ch == 'i' or ch == 'o' or ch == 'u')
+    {
+        return true;
+    }
+    if (ch == 'A' or ch == 'E' or ch == 'I' or ch == 'O' or ch == 'U')
+    {
+        return true;
+    }
+    return false;
+}
+bool upper_case(char ch)
+{
+    if (ch >= 'A' && ch <= 'Z')
+    {
+        return true;
+    }
+    return false;
+
+}
+bool lower_case(char ch)
+{
+    if (ch >= 'a' && ch <= 'z')
+    {
+        return true;
+    }
+    return false;
+
+}
+bool fing_digit(ll n)
+{
+    ll x=n;
+    while(n)
+    {
+        ll a=n%10;
+        if(a!=0)
+        {
+            if(x%a!=0)return false;
+        }
+        n/=10;
+    }
+    return  true;
+}
+int main()
+{
+    ll n;
+    while(true)
+    {
+        cin>>n;
+        if(n==0)break;
+        bool b=false;
+        while(true)
+        {
+            ll ar[n];
+            for(int i=0; i<n; i++)
+            {
+                cin>>ar[i];
+                if(ar[i]==0)
+                {
+                    b=true;
+                    break;
+                }
+            }
+            if(b)break;
+            stack<int>s;
+            vector<int>v;
+            for(int i=1,c=0; i<=n; i++)
+            {
+                if(ar[c]==i)
+                {
+                    v.pb(ar[c]);
+                    c++;
+                    while(!s.empty() and s.top()==ar[c])
+                    {
+                        v.pb(s.top());
+                        s.pop();
+                        c++;
+                    }
+                }
+                else if(ar[c]>i)
+                {
+                    s.push(i);
+                }
+                else if(ar[c]<i)
+                {
+                    while(!s.empty() and s.top()==ar[c])
+                    {
+                        v.pb(ar[c]);
+                        s.pop();
+//                        s.push(i);
+                        c++;
+                    }
+                }
+            }
+            if(v.size()==n)cout<<"Yes"<<endl;
+            else  cout<<"No"<<endl;
+
+        }
+        cout<<endl;
+    }
+}
