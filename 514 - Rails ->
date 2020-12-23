@@ -1,0 +1,66 @@
+import java.io.*;
+
+import java.util.*;
+
+public class Main {
+
+    static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    static PrintWriter out = new PrintWriter(System.out);
+
+    public static void main(String[] args) throws IOException {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNext()) {
+            Stack<Integer> s = new Stack<>();
+
+            int a = input.nextInt();
+
+            if (a == 0) {
+                break;
+            }
+            while (true) {
+                int flag = 1;
+                int num[] = new int[a];
+                for (int i = 0; i < num.length; i++) {
+                    num[i] = input.nextInt();
+                    if (num[i] == 0) {
+                        flag = 0;
+                        break;
+                    }
+                }
+                if (flag == 0) {
+                    break;
+                }
+                Vector<Integer> v = new Vector<>();
+                for (int i = 1, c = 0; i <= a; i++) {
+                    if (num[c] == i) {
+                        v.addElement(i);
+                        c++;
+                        while (!s.empty() && s.peek() == num[c]) {
+
+                            v.addElement(s.pop());
+
+                            c++;
+                        }
+                    } else if (num[c] > i) {
+                        s.push(i);
+                    } else if (i > num[c]) {
+                        while (!s.empty() && s.peek() == num[c]) {
+
+                            v.addElement(s.pop());
+                            s.push(i);
+                            c++;
+                        }
+                    }
+
+                }
+                if (v.size() != num.length) {
+                    System.out.println("No");
+                } else {
+                    System.out.println("Yes");
+                }
+                s.clear();
+            }
+            System.out.println("");
+        }
+    }
+}
