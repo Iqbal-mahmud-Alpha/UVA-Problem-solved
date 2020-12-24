@@ -1,0 +1,69 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define all(a)         a.begin(),a.end()
+#define sort(x)        sort(x.begin(),x.end())
+#define reverse(x,n)     reverse(x,x+n)
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+struct student
+{
+    int day,month,year;
+    string name;
+    student(string n,int d,int m,int y)
+    {
+        name=n;
+        day=d;
+        month=m;
+        year=y;
+    }
+};
+bool comp(student a,student b)
+{
+    if(a.year>b.year)
+    {
+        return 1;
+    }
+    if(a.year==b.year)
+    {
+        if(a.month>b.month)
+        {
+            return 1;
+        }
+    }
+    if(a.year==b.year and a.month==b.month)
+    {
+        if(a.day>b.day)return 1;
+    }
+    return 0;
+
+}
+int main()
+{
+    int tc,day,month,year;
+    string name;
+    vector<student>v;
+    cin>>tc;
+    cin.ignore();
+    while(tc--)
+    {
+        cin>>name>>day>>month>>year;
+        v.emplace_back(student(name,day,month,year));
+    }
+    stable_sort(v.begin(),v.end(),comp);
+    cout<<v[0].name<<endl;
+    cout<<v[v.size()-1].name<<endl;
+}
