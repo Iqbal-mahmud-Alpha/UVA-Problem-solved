@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+struct DNA
+{
+    string name;
+    int cont;
+};
+int number(string s)
+{
+    int result = 0;
+    for(int i=0; i<s.size()-1; i++)
+    {
+        for(int j=i+1; j<s.size(); j++)
+        {
+            if(s[i]>s[j])result++;
+        }
+    }
+    return result;
+}
+bool cmp(DNA a,DNA b)
+{
+    if(a.cont<b.cont) return 1;
+    return 0;
+}
+int main()
+{
+    int tc,n,m;
+    cin>>tc;
+    cin.ignore();
+    while(tc--)
+    {
+        cin>>n>>m;
+        DNA alpha[m];
+        for(int i=0; i<m; i++)
+        {
+            cin>>alpha[i].name;
+            alpha[i].cont=number(alpha[i].name);
+        }
+        stable_sort(alpha,alpha+m,cmp);
+        for(int i=0; i<m; i++)
+        {
+            cout<<alpha[i].name<<endl;
+        }
+        if(tc>0)
+            cout<<endl;
+    }
+}
