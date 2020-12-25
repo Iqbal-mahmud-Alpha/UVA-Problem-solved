@@ -1,0 +1,97 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+
+struct alpha
+{
+    int id,problelm,time;
+    alpha(int i,int prb,int t)
+    {
+        id=i,problelm=prb,time=t;
+    }
+};
+bool comp(alpha a,alpha b)
+{
+    if(a.problelm==b.problelm)
+    {
+        if(a.time==b.time)
+        {
+            return a.id<b.id;
+        }
+        else return a.time<b.time;
+    }
+    else return a.problelm>b.problelm;
+}
+int main()
+{
+    int test;
+    cin>>test;
+    cin.ignore();
+    int probsolved[105], ptime[105], store[105], contprob[105][11];
+    bool contid[105], issolved[105][11];
+    while(test--)
+    {
+        memset(probsolved,0,sizeof(probsolved));
+        memset(issolved,false,sizeof(issolved));
+        memset(contprob,0,sizeof(contprob));
+        memset(store,0,sizeof(store));
+        memset(ptime,0,sizeof(ptime));
+        memset(contid,false,sizeof(contid));
+        int cid, prob, time;
+        char verdict;
+        int cnt = 0;
+        char buffer[100];
+        while(gets(buffer) && buffer[0]!='\0')
+        {
+            //if(cid==0) break;
+            sscanf(buffer,"%d %d %d %c", &cid, &prob, &time, &verdict);
+
+            if(!contid[cid])
+            {
+                contid[cid] = true;
+                store[cnt] = cid;
+                cnt++;
+            }
+            if(verdict=='R' || verdict=='U' || verdict=='E') continue;
+            if(verdict=='C' && !issolved[cid][prob])
+            {
+                probsolved[cid]++;
+                ptime[cid] = ptime[cid] + time + contprob[cid][prob];
+                issolved[cid][prob] = true;
+            }
+            else if(verdict=='I' && !issolved[cid][prob])
+            {
+                contprob[cid][prob] = contprob[cid][prob] + 20;
+            }
+        }
+        vector<alpha>v;
+        for(int i=0; i<cnt; i++)
+        {
+            if(contid[store[i]])
+            {
+                v.emplace_back(alpha(store[i],probsolved[store[i]],ptime[store[i]]));
+            }
+        }
+        sort(v.begin(),v.end(),comp);
+        for(auto a:v)
+        {
+            cout<<a.id<<' '<<a.problelm<<' '<<a.time<<endl;
+        }
+        if(test)
+            cout<<endl;
+    }
+}
