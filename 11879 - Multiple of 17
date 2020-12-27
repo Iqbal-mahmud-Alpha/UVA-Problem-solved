@@ -1,0 +1,32 @@
+
+import java.io.*;
+import java.math.BigInteger;
+import java.util.*;
+
+public class Main {
+
+    static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    static PrintWriter out = new PrintWriter(System.out);
+
+    public static void main(String[] args) throws IOException {
+        Scanner input = new Scanner(System.in);
+        String n;
+        BigInteger b1, ans, d, res = new BigInteger("0");
+        while (input.hasNext()) {
+            n = input.next();
+            if (n.charAt(0) == '0') {
+                break;
+            }
+            b1 = new BigInteger(String.valueOf(n));
+            d = new BigInteger("17");
+            ans = new BigInteger("0");
+            res = b1.mod(d);
+//            System.out.println(res);
+            if (res.compareTo(ans) == 0) {
+                System.out.println("1");
+            } else {
+                System.out.println("0");
+            }
+        }
+    }
+}
