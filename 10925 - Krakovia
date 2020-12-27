@@ -1,0 +1,32 @@
+
+import java.io.*;
+import java.math.BigInteger;
+import java.util.*;
+
+public class Main {
+
+    static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+    static PrintWriter out = new PrintWriter(System.out);
+
+    public static void main(String[] args) throws IOException {
+        Scanner input = new Scanner(System.in);
+        int n, f;
+        BigInteger N, res, s1;
+        int cnt = 0;
+        while (input.hasNext()) {
+            N = new BigInteger("0");
+            n = input.nextInt();
+            f = input.nextInt();
+            if(n==0 && f==0)break;
+            input.nextLine();
+            for (int i = 1; i <= n; i++) {
+                s1 = input.nextBigInteger();
+                N = N.add(s1);
+            }
+            cnt++;
+            res = N.divide(BigInteger.valueOf(f));
+            System.out.println("Bill #" + cnt + " costs " + N + ": each friend should pay " + res);
+            System.out.println("");
+        }
+    }
+}
