@@ -1,0 +1,72 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+string addition(string a,string b)
+{
+    if(a.size()>b.size())
+    {
+        swap(a,b);
+    }
+    string ans="";
+    int n1=a.size(),n2=b.size();
+    reverse(a.begin(),a.end());
+    reverse(b.begin(),b.end());
+    int carry=0;
+
+    for(int i=0; i<n1; i++)
+    {
+        int a1=(((a[i]-'0')+(b[i]-'0'))+carry);
+
+        ans.pb(a1%10+'0');
+        carry=a1/10;
+    }
+    for(int i=n1; i<n2; i++)
+    {
+        int a1=((b[i]-'0')+carry);
+        ans.pb(a1%10+'0');
+        carry=a1/10;
+    }
+    if(carry)ans.pb(carry+'0');
+//    reverse(ans.begin(),ans.end());
+    return ans;
+}
+int main()
+{
+    int tc;
+    string a,b,res;
+    cin>>tc;
+    cin.ignore();
+    while(tc--)
+    {
+        cin>>a>>b;
+        reverse(a.begin(),a.end());
+        reverse(b.begin(),b.end());
+        res=addition(a,b);
+        if(res[0]!='0')cout<<res<<endl;
+        else
+        {
+            int i;
+            for(i=0; i<res.size(); i++)
+            {
+                if(res[i]!='0')
+                {
+                    break;
+                }
+            }
+            cout<<res.substr(i,res.size())<<endl;
+        }
+    }
+}
