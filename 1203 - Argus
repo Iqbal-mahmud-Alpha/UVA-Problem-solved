@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+int qn,p,k;
+string s;
+priority_queue<pair<pair<int,int>,int>>q;
+int main()
+{
+    while(cin>>s)
+    {
+        if(s=="#")break;
+        cin>>qn>>p;
+        q.push(make_pair(make_pair(-p,-qn),-p));
+    }
+    cin>>k;
+    while(k--)
+    {
+        auto t=q.top();
+        q.pop();
+        cout<<-t.ff.ss<<endl;
+//        cout<<t.ff.ff<<' '<<t.ff.ss<<' '<<t.ss<<endl;
+        t.ff.ff=t.ff.ff+t.ss;
+//        cout<<t.ff.ff<<' '<<t.ff.ss<<' '<<t.ss<<endl;
+        q.push(t);
+    }
+}
