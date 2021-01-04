@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<int,int>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int t,k,M,l;
+    map<char,double>m;
+    char ch;
+    string s;
+    scanf("%d",&t);
+    double sum,value;
+    while(t--)
+    {
+        sum=0;
+        scanf("%d",&k);
+        while(k--)
+        {
+            cin>>ch>>value;
+            m[ch]=value;
+        }
+        scanf("%d",&M);
+        cin.ignore();
+        while(M--)
+        {
+            s="";
+            getline(cin,s);
+            for(int i=0; i<s.size(); i++)
+            {
+                auto it=m.find(s[i]);
+                if(it!=m.end())sum+=it->ss;
+            }
+        }
+        sum/=100;
+        printf("%0.2lf$\n",sum);
+        m.clear();
+    }
+}
