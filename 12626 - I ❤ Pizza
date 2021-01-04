@@ -1,0 +1,72 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+bool is_check(char ch)
+{
+
+    if(ch=='A')return 1;
+    if(ch=='M')return 1;
+    if(ch=='R')return 1;
+    if(ch=='G')return 1;
+    if(ch=='I')return 1;
+    if(ch=='T')return 1;
+    else return 0;
+}
+int main()
+{
+    int tc;
+    cin>>tc;
+    cin.ignore();
+    string s;
+alpha:
+    while(tc--)
+    {
+        s="";
+        getline(cin,s);
+        map<char,int>m;
+        for(int i=0; i<s.size(); i++)
+        {
+            if(is_check(s[i]))
+            {
+                m[s[i]]++;
+            }
+        }
+        vector<int>v;
+        if(m.size()==0)
+        {
+            cout<<0<<endl;
+            goto alpha;
+        }
+        for(auto i:m)
+        {
+            if(i.ff=='A')
+            {
+                int a=i.ss/3;
+                v.pb(a);
+            }
+            else if(i.ff=='R')
+            {
+                int a=i.ss/2;
+                v.pb(a);
+            }
+            else v.pb(i.ss);
+        }
+        int ans=*min_element(v.begin(),v.end());
+        if(m.size()==6)cout<<ans<<endl;
+        else cout<<0<<endl;
+
+    }
+}
