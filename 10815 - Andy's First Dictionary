@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**------- Char Chk----------*/
+bool is_lower(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    return false;
+}
+bool is_upper(char ch)
+{
+    if(ch>='A' && ch<='Z') return true;
+    return false;
+}
+bool is_digit(char ch)
+{
+    if(ch>='0' && ch<='9') return true;
+    return false;
+}
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    set<string>s;
+    string str;
+    while(getline(cin,str))
+    {
+        string ans="";
+        for(int i=0; i<str.size(); i++)
+        {
+            if(is_upper(str[i]))
+            {
+                ans+=str[i]+32;
+            }
+            else if(is_lower(str[i]))
+            {
+                ans+=str[i];
+            }
+            else if(ans!="")
+            {
+                s.insert(ans);
+                ans="";
+            }
+        }
+        if(ans!="")
+            s.insert(ans);
+
+    }
+    for(auto i:s)
+    {
+        cout<<i<<endl;
+    }
+}
