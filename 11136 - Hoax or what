@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**------- Char Chk----------*/
+bool is_lower(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    return false;
+}
+bool is_upper(char ch)
+{
+    if(ch>='A' && ch<='Z') return true;
+    return false;
+}
+bool is_digit(char ch)
+{
+    if(ch>='0' && ch<='9') return true;
+    return false;
+}
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    ll tc,n,a;
+    multiset<ll>mul;
+    while(true)
+    {
+        ll sum=0;
+        cin>>tc;
+        if(tc==0)break;
+        while(tc--)
+        {
+            cin>>n;
+            for(int i=0; i<n; i++)
+            {
+                cin>>a;
+                mul.insert(a);
+            }
+            auto mx=mul.end(),mm=mul.begin();
+            mx--;
+            sum+=*mx-*mm;
+            mul.erase(mx),mul.erase(mm);
+        }
+        cout<<sum<<endl;
+        mul.clear();
+    }
+}
