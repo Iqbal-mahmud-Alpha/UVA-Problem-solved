@@ -1,0 +1,75 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int n,M;
+    cin>>n>>M;
+    string s;
+    map<string,string>m;
+    cin.ignore();
+    while(n--)
+    {
+        getline(cin,s);
+        string ans="",key="";
+
+        for(auto x:s)
+        {
+            if(x==' ')
+            {
+                key=ans;
+                ans="";
+            }
+            else
+            {
+                ans+=x;
+            }
+        }
+        m[key]=ans;
+    }
+    string res;
+
+    while(M--)
+    {
+        ll sum=0;
+        while(getline(cin,res))
+        {
+            string key,ans="";
+            if(res==".")break;
+            for(auto x:res)
+            {
+                if(x==' ')
+                {
+                    if(m.find(ans)!=m.end())
+                    {
+                        sum+=stoi(m[ans]);
+                    }
+                    ans="";
+                }
+                else
+                {
+                    ans+=x;
+                }
+            }
+            if(m.find(ans)!=m.end())
+            {
+                sum+=stoi(m[ans]);
+            }
+        }
+        cout<<sum<<endl;
+    }
+}
