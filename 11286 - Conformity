@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define     all(x)      x.begin(),x.end()
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**------- Char Chk----------*/
+bool is_lower(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    return false;
+}
+bool is_upper(char ch)
+{
+    if(ch>='A' && ch<='Z') return true;
+    return false;
+}
+bool is_digit(char ch)
+{
+    if(ch>='0' && ch<='9') return true;
+    return false;
+}
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    map<vector<int>,int>m;
+    int n;
+    while(cin>>n,n)
+    {
+        m.clear();
+        while(n--)
+        {
+            vector<int>v;
+            for(int i=0; i<5; i++)
+            {
+                int a;
+                cin>>a;
+                v.pb(a);
+            }
+            sort(v.begin(),v.end());
+            m[v]++;
+        }
+        int mx=0;
+        for(auto i:m)
+        {
+            if(mx<i.ss)
+            {
+                mx=i.ss;
+            }
+        }
+//        cout<<mx<<endl;
+        int cnt=0;
+        for(auto i:m)
+        {
+            if(i.ss==mx)cnt++;
+        }
+        cout<<mx*cnt<<endl;
+    }
+}
+
+
