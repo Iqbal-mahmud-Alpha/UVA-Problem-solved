@@ -1,0 +1,113 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define     all(x)      x.begin(),x.end()
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+
+/**------- Char Chk----------*/
+bool is_lower(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    return false;
+}
+bool is_upper(char ch)
+{
+    if(ch>='A' && ch<='Z') return true;
+    return false;
+}
+bool is_digit(char ch)
+{
+    if(ch>='0' && ch<='9') return true;
+    return false;
+}
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int p,q,num,sum,a,b;
+    cin>>p>>q;
+    char str[1000],ch;
+    map<string,int>m;
+    for(int i=1; i<=p; i++)
+    {
+        cin>>str>>a>>ch>>b;
+        m[str]=a*10+b;
+    }
+    cin.ignore();
+    for(int i=1; i<=q; i++)
+    {
+
+        gets(str);
+        stringstream line(str);
+        cout<<"Guess #"<<i<<" was ";
+        sum=0;
+        while(line>>str)
+        {
+            if(strcmp(str,"+")==0)
+            {
+                continue;
+            }
+            if(strcmp(str,"<")==0)
+            {
+                line>>num;
+                if(sum<num*10)
+                {
+                    cout<<"correct."<<endl;
+                }
+                else  cout<<"incorrect."<<endl;
+                break;
+            }
+            if(strcmp(str,">")==0)
+            {
+                line>>num;
+                if(sum>num*10)
+                {
+                    cout<<"correct."<<endl;
+                }
+                else  cout<<"incorrect."<<endl;
+                break;
+            }
+            if(strcmp(str,"<=")==0)
+            {
+                line>>num;
+                if(sum<=num*10)
+                {
+                    cout<<"correct."<<endl;
+                }
+                else  cout<<"incorrect."<<endl;
+                break;
+            }
+            if(strcmp(str,">=")==0)
+            {
+                line>>num;
+                if(sum>=num*10)
+                {
+                    cout<<"correct."<<endl;
+                }
+                else  cout<<"incorrect."<<endl;
+                break;
+            }
+            if(strcmp(str,"=")==0)
+            {
+                line>>num;
+                if(sum==num*10)
+                {
+                    cout<<"correct."<<endl;
+                }
+                else  cout<<"incorrect."<<endl;
+                break;
+            }
+            sum+=m[str];
+        }
+    }
+}
