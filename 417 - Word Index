@@ -1,0 +1,113 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define     all(x)      x.begin(),x.end()
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+
+/**------- Char Chk----------*/
+bool is_lower(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    return false;
+}
+bool is_upper(char ch)
+{
+    if(ch>='A' && ch<='Z') return true;
+    return false;
+}
+bool is_digit(char ch)
+{
+    if(ch>='0' && ch<='9') return true;
+    return false;
+}
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+map<string,int>m;
+int main()
+{
+    int sum=1;
+    string str="abcdefghijklmnopqrstuvwxyz";
+    string a,b,c,d,e,s;
+    for(int i=0; i<26; i++)
+    {
+        s=str[i];
+        m[s]=sum++;
+    }
+    for(int i=0; i<26; i++)
+    {
+        a=str[i];
+        for(int j=i+1; j<26; j++)
+        {
+            b=str[j];
+            s=a+b;
+            m[s]=sum++;
+        }
+    }
+    for(int i=0; i<26; i++)
+    {
+        a=str[i];
+        for(int j=i+1; j<26; j++)
+        {
+            b=str[j];
+            for(int k=j+1; k<26; k++)
+            {
+                c=str[k];
+                s=a+b+c;
+                m[s]=sum++;
+            }
+        }
+    }
+    for(int i=0; i<26; i++)
+    {
+        a=str[i];
+        for(int j=i+1; j<26; j++)
+        {
+            b=str[j];
+            for(int k=j+1; k<26; k++)
+            {
+                c=str[k];
+                for(int l=k+1; l<26; l++)
+                {
+                    d=str[l];
+                    s=a+b+c+d;
+                    m[s]=sum++;
+                }
+            }
+        }
+    }
+    for(int i=0; i<26; i++)
+    {
+        a=str[i];
+        for(int j=i+1; j<26; j++)
+        {
+            b=str[j];
+            for(int k=j+1; k<26; k++)
+            {
+                c=str[k];
+                for(int l=k+1; l<26; l++)
+                {
+                    d=str[l];
+                    for(int M=l+1; M<26; M++)
+                    {
+                        e=str[M];
+                        s=a+b+c+d+e;
+                        m[s]=sum++;
+                    }
+                }
+            }
+        }
+    }
+    while(cin>>s)
+    {
+        cout<<m[s]<<endl;
+    }
+}
