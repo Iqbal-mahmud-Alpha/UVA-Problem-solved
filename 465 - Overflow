@@ -1,0 +1,48 @@
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String first = "", second = "", res, s;
+        char ch = '0';
+        while (input.hasNext()) {
+            s = input.nextLine();
+            String[] ans = s.split("\\s+");
+            first = ans[0];
+            second = ans[2];
+            ch = ans[1].charAt(0);
+            BigInteger r=new BigInteger("2147483647");
+            BigInteger sum;
+            System.out.println(s);
+            BigInteger fst = new BigInteger(first);
+            BigInteger sec = new BigInteger(second);
+            if (fst.compareTo(r)==1) {
+                System.out.println("first number too big");
+            }
+            if (sec.compareTo(r)==1) {
+                System.out.println("second number too big");
+            }
+            
+            switch (ch) {
+                case '+': {
+                    sum = fst.add(sec);
+                    if (sum.compareTo(r)==1) {
+                        System.out.println("result too big");
+                    }
+                    break;
+                }
+                case '*': {
+                    sum = fst.multiply(sec);
+                    if (sum.compareTo(r)==1) {
+                        System.out.println("result too big");
+                    }
+ 
+                    break;
+                }
+            }
+        }
+    }
+}
