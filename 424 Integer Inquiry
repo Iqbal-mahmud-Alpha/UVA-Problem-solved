@@ -1,0 +1,22 @@
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String s;
+        BigInteger sum = new BigInteger("0");
+        while (input.hasNext()) {
+            s = input.next();
+            if (s.equals("0")) {
+                break;
+            }
+
+            BigInteger A = new BigInteger(s);
+            sum = A.add(sum);
+        }
+        System.out.println(sum);
+    }
+}
