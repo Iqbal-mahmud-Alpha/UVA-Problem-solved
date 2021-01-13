@@ -1,0 +1,21 @@
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        while (input.hasNext()) {
+            BigDecimal num = input.nextBigDecimal();
+            int n = input.nextInt();
+            num = num.pow(n);
+            String ans = num.stripTrailingZeros().toPlainString();
+            if (ans.charAt(0) == '0') {
+                ans = ans.substring(1, ans.length());
+            }
+            System.out.println(ans);
+        }
+    }
+}
