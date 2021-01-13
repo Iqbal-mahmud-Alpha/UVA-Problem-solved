@@ -1,0 +1,100 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define     all(x)      x.begin(),x.end()
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+
+/**------- Char Chk----------*/
+bool is_lower(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    return false;
+}
+bool is_upper(char ch)
+{
+    if(ch>='A' && ch<='Z') return true;
+    return false;
+}
+bool is_digit(char ch)
+{
+    if(ch>='0' && ch<='9') return true;
+    return false;
+}
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+bool cmp(pair<string,int>a,pair<string,int>b)
+{
+    return a.ff<b.ff;
+}
+int check(char ch)
+{
+    if(ch=='A' or ch=='B' or ch=='C' )return 2;
+    if(ch=='D' or ch=='E' or ch=='F') return 3;
+    if(ch=='G' or ch=='H' or ch=='I' )return 4;
+    if(ch=='J' or ch== 'K' or ch== 'L')return  5;
+    if(ch=='M' or ch== 'N' or ch== 'O')return 6;
+    if(ch=='P' or ch== 'R' or ch== 'S')return  7;
+    if(ch=='T' or ch== 'U' or ch== 'V')return  8;
+    if(ch=='W' or ch== 'X' or ch== 'Y')return  9;
+    else return 0;
+}
+int main()
+{
+    int tc,n,flag=0;
+    cin>>tc;
+    cin.ignore();
+    while(tc--)
+    {
+        cin>>n;
+        string  s;
+        cin.ignore();
+        map<string,int>m;
+        if(flag==1)cout<<endl;
+        flag=1;
+        for(int i=1; i<=n; i++)
+        {
+            getline(cin,s);
+            string ans="";
+            int cnt=0;
+            for(int i=0; i<s.size(); i++)
+            {
+                if(is_digit(s[i]))
+                {
+                    ans+=s[i];
+                    cnt++;
+                    if(cnt==3)ans+='-';
+                }
+                else if(check(s[i]))
+                {
+                    ans+=to_string(check(s[i]));
+                    cnt++;
+                    if(cnt==3)ans+='-';
+                }
+
+            }
+            m[ans]++;
+//            cout<<ans<<endl;
+        }
+        vector<pair<string,int>>v(m.begin(),m.end());
+        sort(v.begin(),v.end(),cmp);
+        if(v.size()==n)cout<<"No duplicates."<<endl;
+        else
+        {
+            for(auto i:v)
+            {
+                
+                if(i.ss>1)
+                    cout<<i.ff<<' '<<i.ss<<endl;
+            }
+        }
+    }
+}
