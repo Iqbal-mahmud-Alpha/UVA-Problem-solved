@@ -1,0 +1,26 @@
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Scanner;
+import java.util.Vector;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String  s;
+        Vector<String> v = new Vector();
+        while (input.hasNext()) {
+            s = input.next();
+            v.add(s);
+            if (v.size() == 2) {
+                BigInteger A = new BigInteger(v.elementAt(0));
+                BigInteger B = new BigInteger(v.elementAt(1));
+                BigInteger res = A.multiply(B);
+                System.out.println(res);
+                v.clear();
+            }
+        }
+
+    }
+}
