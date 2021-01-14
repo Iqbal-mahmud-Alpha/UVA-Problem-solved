@@ -1,0 +1,25 @@
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.Vector;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        BigInteger ans[] = new BigInteger[1010];
+        ans[0] = BigInteger.ZERO;
+        ans[1] = new BigInteger("2");
+        ans[2] = new BigInteger("5");
+        ans[3] = new BigInteger("13");
+        for (int i = 4; i < ans.length; i++) {
+            ans[i] = ans[i - 1].multiply(new BigInteger("2")).add(ans[i - 2]).add(ans[i - 3]);
+        }
+        while (input.hasNext()) {
+            System.out.println(ans[input.nextInt()]);
+        }
+    }
+}
+
