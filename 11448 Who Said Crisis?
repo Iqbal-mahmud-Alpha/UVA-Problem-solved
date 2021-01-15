@@ -1,0 +1,24 @@
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        int tc = input.nextInt();
+        while (tc-- > 0) {
+            String f = input.next();
+            String s = input.next();
+            BigInteger F = new BigInteger(f);
+            BigInteger S = new BigInteger(s);
+            BigInteger res;
+            res = F.subtract(S);
+            System.out.println(res);
+        }
+    }
+}
