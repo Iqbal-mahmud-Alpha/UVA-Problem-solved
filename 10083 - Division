@@ -1,0 +1,31 @@
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Main {
+
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int t, b, a;
+        while (input.hasNext()) {
+            t = input.nextInt();
+            a = input.nextInt();
+            b = input.nextInt();
+            System.out.print("(" + t + "^" + a + "-1)/(" + t + "^" + b + "-1) ");
+            if (t == 1 || b > a || a % b != 0 || (a - b) * Math.log10(t) > 99) {
+                System.out.println("is not an integer with less than 100 digits.");
+            } else if (a == b) {
+                System.out.println("1");
+            } else {
+                BigInteger T = BigInteger.valueOf(t);
+                BigInteger res1, res2, res3;
+                res1 = T.pow(a).subtract(BigInteger.ONE);
+                res2 = T.pow(b).subtract(BigInteger.ONE);
+                System.out.println(res1.divide(res2));
+            
+            }
+        }
+    }
+
+}
