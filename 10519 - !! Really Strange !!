@@ -1,0 +1,23 @@
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Main {
+
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        while (input.hasNext()) {
+            String ans = input.nextLine();
+            BigInteger A = new BigInteger(ans);
+            BigInteger res = A.multiply(A.subtract(BigInteger.ONE)).add(new BigInteger("2"));
+            if (ans.equals("0")) {
+                System.out.println("1");
+            } else {
+                System.out.println(res);
+            }
+        }
+    }
+}
