@@ -1,0 +1,28 @@
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.Vector;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int tc;
+        String n,p;
+       while(input.hasNext()){
+         tc=input.nextInt();
+         while(tc-->0){
+             n=input.next();
+             p=input.next();
+             BigInteger N=new BigInteger (n);
+             BigInteger P=new BigInteger (p);
+             BigInteger res;
+             res=P.mod((N));
+             
+             System.out.println(res);
+         } 
+       }
+    }
+}
