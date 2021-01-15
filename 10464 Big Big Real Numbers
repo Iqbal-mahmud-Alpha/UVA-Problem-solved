@@ -1,0 +1,30 @@
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Main {
+
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        while (input.hasNext()) {
+            int n = input.nextInt();
+            input.nextLine();
+            while (n-- > 0) {
+                String first = input.next();
+                String second = input.next();
+                BigDecimal F = new BigDecimal(first);
+                BigDecimal S = new BigDecimal(second);
+                String ans = F.add(S).stripTrailingZeros().toPlainString();
+                if (ans.contains(".")) {
+                    System.out.println(ans);
+                } else {
+                    System.out.println(ans + '.' + '0');
+                }
+            }
+        }
+    }
+
+}
