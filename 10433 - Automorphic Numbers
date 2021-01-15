@@ -1,0 +1,27 @@
+
+import java.io.IOException;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class Main {
+
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        while (input.hasNext()) {
+            String read = input.next();
+            BigInteger A = new BigInteger(read);
+            String ans = A.pow(2).toString();
+            int n = ans.length();
+            int o = read.length();
+            if (read.equals("0") || read.equals("1")) {
+                System.out.println("Not an Automorphic number.");
+            } else if (ans.indexOf(read, n - o) != -1) {
+                System.out.println("Automorphic number of " + o + "-digit.");
+            } else {
+                System.out.println("Not an Automorphic number.");
+            }
+        }
+    }
+
+}
