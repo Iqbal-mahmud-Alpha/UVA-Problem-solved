@@ -1,0 +1,40 @@
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    static Scanner input = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        int cnt = 1, flag = 0;
+        while (true) {
+            int tc = input.nextInt();
+            if (tc == 0) {
+                break;
+            }
+            int array[] = new int[tc];
+            long sum = 0;
+            for (int i = 0; i < tc; i++) {
+                array[i] = input.nextInt();
+            }
+            for (int i = 0; i < tc; i++) {
+                sum += array[i];
+            }
+            int fix = (int) sum / tc;
+            int sm = 0;
+            for (int i = 0; i < array.length; i++) {
+                if (array[i] < fix) {
+                    sm += (fix - array[i]);
+                }
+            }
+            System.out.println("Set #" + cnt);
+            System.out.println("The minimum number of moves is " + sm + ".");
+            System.out.println("");
+            cnt++;
+        }
+    }
+}
