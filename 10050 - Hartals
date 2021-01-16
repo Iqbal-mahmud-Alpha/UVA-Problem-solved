@@ -1,0 +1,81 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define     all(x)      x.begin(),x.end()
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+
+/**------- Char Chk----------*/
+bool is_lower(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    return false;
+}
+bool is_upper(char ch)
+{
+    if(ch>='A' && ch<='Z') return true;
+    return false;
+}
+bool is_digit(char ch)
+{
+    if(ch>='0' && ch<='9') return true;
+    return false;
+}
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int tc,n,p,a;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n>>p;
+        vector<int>party;
+        for(int i=1; i<=p; i++)
+        {
+            cin>>a;
+            party.pb(a);
+        }
+        int b[n+1];
+        for(int i=1; i<=n; i++)b[i]=1;
+
+        for(int i=6; i<=n; i+=7)
+        {
+            b[i]=2;
+        }
+        for(int i=7; i<=n; i+=7)
+        {
+            b[i]=2;
+        }
+//        for(int i:b)cout<<i<<' ';
+        int total=0;
+        for(int i=1; i<=n; i++)
+        {
+            if(b[i]==1)total++;
+        }
+        for(int i:party)
+        {
+            for(int j=i; j<=n; j+=i)
+            {
+                if(b[j]!=2)b[j]=0;
+            }
+        }
+//        for(int i:b)cout<<i<<' ';
+        int day=0;
+        for(int i=1; i<=n; i++)
+        {
+            if(b[i]==0)day++;
+        }
+        cout<<abs(abs(day-total)-total)<<endl;
+    }
+}
+
