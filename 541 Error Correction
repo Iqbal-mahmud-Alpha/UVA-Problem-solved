@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a,b)   __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define all(a)     a.begin(),a.end()
+#define mod  1000000007
+#define num 1000000
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int n;
+    while(cin>>n)
+    {
+        if(n==0)break;
+        int ar[n][n];
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<n; j++)
+            {
+                cin>>ar[i][j];
+            }
+        }
+        int row=0,col=0,frow=0,fcolum=0;
+        int R=0,C=0;
+        for(int i=0; i<n; i++)
+        {
+            int sum=0;
+            for(int j=0; j<n; j++)
+            {
+                sum+=ar[i][j];
+            }
+            if(sum%2==0)row++;
+            else
+            {
+                R=i;
+                frow++;
+            }
+        }
+        for(int i=0; i<n; i++)
+        {
+            int sum=0;
+            for(int j=0; j<n; j++)
+            {
+                sum+=ar[j][i];
+            }
+            if(sum%2==0)col++;
+            else
+            {
+                C=i;
+                fcolum++;
+            }
+        }
+        if(row==n and col==n)
+        {
+            cout<<"OK"<<endl;
+        }
+        else if(frow==1 and fcolum==1)
+        {
+            cout<<"Change bit ("<<R+1<<","<<C+1<<")"<<endl;
+        }
+        else cout<<"Corrupt"<<endl;
+    }
+}
