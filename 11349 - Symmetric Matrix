@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a,b)   __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define all(a)     a.begin(),a.end()
+#define mod 1000000007
+#define num 1000000
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int tc,n;
+    char N,ch;
+    cin>>tc;
+    int cnt=0;
+    while(tc--)
+    {
+        cin>>N>>ch>>n;
+        ll a[n][n];
+        int flag1=0,flag2=0;
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<n; j++)
+            {
+                cin>>a[i][j];
+                if(a[i][j]<0)flag1=1;
+            }
+        }
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<n-i; j++)
+            {
+                if(a[i][j]!=a[n-1-i][n-1-j])flag2=1;
+            }
+        }
+        cnt++;
+        if(flag1==0 and flag2==0)
+        {
+            cout<<"Test #"<<cnt<<":"<<" Symmetric."<<endl;
+        }
+        else
+        {
+            cout<<"Test #"<<cnt<<":"<<" Non-symmetric."<<endl;
+        }
+    }
+}
+
+
