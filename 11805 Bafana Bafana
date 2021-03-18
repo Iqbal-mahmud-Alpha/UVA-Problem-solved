@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster                    \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define INF 1000000000
+#define mod 1000000007
+#define num 1414213570
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int tc,n,k,p;
+    cin>>tc;
+    for(int i=1;i<=tc;i++){
+        cin>>n>>k>>p;
+        while(p--){
+            k++;
+            if(k>n)k=1;
+        }
+        cout<<"Case "<<i<<": "<<k<<endl;
+    }
+}
