@@ -1,0 +1,113 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+
+#define fr0(i, n)      for(int i=0; i<n; i++)
+#define fr1(i, n)      for(int i=1; i<=n; i++
+
+#define mem(a,b)  memset(a,b,sizeof(a))
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define setbit(n) __builtin_popcount(n);
+#define totalbit(n) log2(n)+1
+#define INF 1000000000
+#define mod 1000000007
+#define num 1414213570
+
+/**------- Char Chk----------*/
+bool isLower(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    return false;
+}
+bool isUppper(char ch)
+{
+    if(ch>='A' && ch<='Z') return true;
+    return false;
+}
+bool isDiget(char ch)
+{
+    if(ch>='0' && ch<='9') return true;
+    return false;
+}
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+bool isChar(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    else if(ch>='A' && ch<='Z') return true;
+    else return false;
+}
+int main()
+{
+    string s1,s2;
+    while(getline(cin,s1) and getline(cin,s2))
+    {
+        int ln1=s1.size();
+        int ln2=s2.size();
+        int sum1=0,sum2=0;
+        for(int i=0; i<ln1; i++)
+        {
+            if(isChar(s1[i]))
+            {
+                sum1+=(int)toupper(s1[i])-64;
+            }
+        }
+        for(int i=0; i<ln2; i++)
+        {
+            if(isChar(s2[i]))
+            {
+                sum2+=(int)toupper(s2[i])-64;
+            }
+        }
+        //cout<<sum1<<' '<<sum2<<endl;
+        int n=0,m=0;
+        int len1=to_string(sum1).size();
+        int len2=to_string(sum2).size();
+        if(len1!=1)
+        {
+            while(len1!=1)
+            {
+                n=0;
+                while(sum1)
+                {
+                    int a=sum1%10;
+                    n+=a;
+                    sum1/=10;
+                }
+                len1=to_string(n).size();
+                sum1=n;
+            }
+        }
+        else n=sum1;
+        if(len2!=1)
+        {
+            while(len2!=1)
+            {
+                m=0;
+                while(sum2)
+                {
+                    int a=sum2%10;
+                    m+=a;
+                    sum2/=10;
+                }
+                len2=to_string(m).size();
+                sum2=m;
+            }
+        }
+        else m=sum2;
+
+        //cout<<n<<' '<<m<<endl;
+        if(m>n)swap(m,n);
+        double ans=((double)m/(double)n)*100;
+        printf("%.2lf ",ans);
+        cout<<"%"<<endl;
+    }
+}
+
