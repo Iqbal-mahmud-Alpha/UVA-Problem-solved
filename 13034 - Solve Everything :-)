@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster     ios_base::sync_with_stdio(0) cin.tie(0) cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define setbit(n) __builtin_popcount(n);
+#define totalbit(n) log2(n)+1
+#define INF 1000000000
+#define mod 1000000007
+#define num 1414213570
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int t,c,cnt=1;
+    cin>>t;
+    while(t--)
+    {
+        int a=13,n,f=0;
+        while(a--)
+        {
+            cin>>n;
+            if(n==0)f=1;
+        }
+        cout<<"Set #"<<cnt<<": "<<((f==0)?"Yes":"No")<<endl;
+        cnt++;
+    }
+}
