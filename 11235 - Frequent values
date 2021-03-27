@@ -1,0 +1,104 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define mem(a,b)  memset(a,b,sizeof(a))
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define setbit(n) __builtin_popcount(n);
+#define totalbit(n) log2(n)+1
+#define precision(x)      cout<<fixed<<setprecision(x)
+#define INF 1000000000
+#define mod 1000000007
+#define num 100005
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int tree[num*4],a[num],freq[num];
+
+void built(int node,int b,int e )
+{
+    if(b==e)
+    {
+        tree[node]=freq[b];
+        return;
+    }
+    int mid=(b+e)/2;
+    built(node*2,b,mid);
+    built(2*node+1,mid+1,e);
+    tree[node]=max(tree[node*2],tree[2*node+1]);
+}
+
+int query(int node,int b,int e,int i,int j)
+{
+    if(i>e or j<b)
+    {
+        return -INF;
+    }
+    if(b>=i and e<=j)
+    {
+        return tree[node];
+    }
+    int mid=(b+e)/2;
+    int p1=query(node*2,b,mid,i,j);
+    int p2= query(2*node+1,mid+1,e,i,j);
+    return max(p1,p2);
+}
+int main()
+{
+    int n,q;
+    while(scanf("%d",&n)==1 and n!=0)
+    {
+        cin>>q;
+        map<int,int>m;
+        map<int,int>index;
+        int start[n+1];
+        for(int i=1; i<=n; i++)
+        {
+            cin>>a[i];
+            m[a[i]]++;
+            if(index[a[i]]==0)
+            {
+                index[a[i]]=i;
+            }
+        }
+        for(int i=1; i<=n; i++)
+        {
+            start[i]=index[a[i]];
+        }
+        for(int i=1; i<=n; i++)
+        {
+            freq[i]=m[a[i]];
+        }
+
+        built(1,1,n);
+        while(q--)
+        {
+            int l,r,cnt1,cnt2,cnt3;
+            cin>>l>>r;
+            if(a[l]==a[r])
+            {
+                cout<<(r-l+1)<<endl;
+            }
+            else
+            {
+                int k=start[l]+freq[l];
+                cnt1=k-l;
+                cnt2=r-start[r]+1;
+                /// cout<<cnt1<<' '<<cnt2<<endl;
+                cnt3=query(1,1,n,k,start[r]-1);
+                cout<<max(cnt1,max(cnt2,cnt3))<<endl;
+            }
+        }
+        memset(tree,0,sizeof(tree));
+        memset(freq,0,sizeof(freq));
+    }
+
+}
+
+
