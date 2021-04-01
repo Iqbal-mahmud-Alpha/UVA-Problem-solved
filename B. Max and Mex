@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define len(a)            sizeof(a)/sizeof(a[0])
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007
+#define num               100005
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int Missing(int array[],int start, int end)
+{
+    if (start > end)
+        return end + 1;
+
+    if (start != array[start])
+        return start;
+
+    int mid = (start + end) / 2;
+    if (array[mid] == mid)
+        return Missing(array,
+                       mid+1, end);
+
+    return Missing(array, start, mid);
+}
+int main()
+{
+    int tc,n,k;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n>>k;
+        int a[n];
+        map<int,int>m;
+        for(int i=0; i<n; i++)
+        {
+            cin>>a[i];
+            m[a[i]]++;
+        }
+        if(k==0){
+            cout<<m.size()<<endl;
+            continue;
+        }
+        sort(a,a+n);
+        int mx=a[n-1];
+        int x=Missing(a,0,n-1);
+        if(x<mx)
+        {
+            int res=ceil((double)(x+mx)/(double)2);
+            m[res]++;
+            cout<<m.size()<<endl;
+        }
+        else cout<<(m.size()+k)<<endl;
+    }
+}
+
